@@ -4,7 +4,11 @@ trigger:
 pool:
   vmImage: 'ubuntu-18.04'
   demands:
+<<<<<<< HEAD
     - npm
+=======
+  - npm
+>>>>>>> unit-tests
 
 variables:
   buildConfiguration: 'Release'
@@ -46,6 +50,17 @@ steps:
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
+<<<<<<< HEAD
+=======
+  displayName: 'Run unit tests - $(buildConfiguration)'
+  inputs:
+    command: 'test'
+    arguments: '--no-build --configuration $(buildConfiguration)'
+    publishTestResults: true
+    projects: '**/*.Tests.csproj'
+    
+- task: DotNetCoreCLI@2
+>>>>>>> unit-tests
   displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
     command: 'publish'
@@ -56,4 +71,8 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
+<<<<<<< HEAD
   condition: succeeded()
+=======
+  condition: succeeded()
+>>>>>>> unit-tests
